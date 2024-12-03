@@ -60,10 +60,10 @@
     aocInput = pkgs.writeShellApplication {
       name = "aoc-input";
 
-      runtimeInputs = with pkgs; [
+      runtimeInputs = [
         aocCookie
-        coreutils
-        curl
+        pkgs.coreutils
+        pkgs.curl
       ];
 
       text = ''
@@ -130,9 +130,9 @@
       init = pkgs.writeShellApplication {
         name = "aoc-init";
 
-        runtimeInputs = with pkgs; [
+        runtimeInputs = [
           aocInput
-          coreutils
+          pkgs.coreutils
         ];
 
         text = ''
