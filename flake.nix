@@ -150,6 +150,7 @@
       day1 = mkDay 1;
       day2 = mkDay 2;
       day3 = mkDay 3;
+      day4 = mkDay 4;
     };
   };
 }
