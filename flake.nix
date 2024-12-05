@@ -151,6 +151,7 @@
       day2 = mkDay 2;
       day3 = mkDay 3;
       day4 = mkDay 4;
+      day5 = mkDay 5;
     };
   };
 }
