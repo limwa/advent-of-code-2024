@@ -70,4 +70,3 @@ func isJoinedDiffSafe(leftIndex int, rightIndex int, diffs []int) bool {
 	joinedDiff := leftDiff + rightDiff
 	return isDiffSafe(joinedDiff)
 }
-
