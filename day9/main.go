@@ -115,21 +115,6 @@ func solvePart1(input string) string {
 	return cast.ToString(calculateChecksum(result))
 }
 
-type Range struct {
-	Start int
-	Size int
-}
-
-func findFirstFreeSpace(freeSpaces []*Range, size int) (*Range, bool) {
-	for _, freeSpace := range freeSpaces {
-		if freeSpace.Size >= size {
-			return freeSpace, true
-		}
-	}
-
-	return nil, false
-}
-
 func solvePart2(input string) string {
 	entries := parseCompactEntries(input)
 
