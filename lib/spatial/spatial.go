@@ -8,11 +8,11 @@ type Vec2D struct {
 }
 
 func (v Vec2D) ManhattanDistance(other Vec2D) int {
-	return math.Abs(v.X - other.X) + math.Abs(v.Y - other.Y)
+	return math.Abs(v.X-other.X) + math.Abs(v.Y-other.Y)
 }
 
 func (v Vec2D) EuclideanDistanceSqr(other Vec2D) int {
-	return (v.X - other.X) * (v.X - other.X) + (v.Y - other.Y) * (v.Y - other.Y)
+	return (v.X-other.X)*(v.X-other.X) + (v.Y-other.Y)*(v.Y-other.Y)
 }
 
 func (v Vec2D) Negate() Vec2D {
@@ -28,7 +28,7 @@ func (v Vec2D) Sub(other Vec2D) Vec2D {
 }
 
 func (v Vec2D) Dot(other Vec2D) int {
-	return v.X * other.X + v.Y * other.Y
+	return v.X*other.X + v.Y*other.Y
 }
 
 func (v Vec2D) Scale(factor float64) Vec2D {
