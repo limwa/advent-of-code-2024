@@ -157,6 +157,7 @@
       day8 = mkDay 8;
       day9 = mkDay 9;
       day10 = mkDay 10;
+      day11 = mkDay 11;
     };
   };
 }
