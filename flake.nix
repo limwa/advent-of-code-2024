@@ -113,6 +113,17 @@
           go run main.go "$@"
         '';
       };
+
+    mkDays = days: let
+      otherDays = mkDays (days - 1);
+    in
+      if days == 0
+      then {}
+      else
+        {
+          "day${toString days}" = mkDay days;
+        }
+        // otherDays;
   in {
     devShell.${system} = pkgs.mkShell {
       packages = with pkgs; [
@@ -123,41 +134,30 @@
 
     formatter.${system} = pkgs.alejandra;
 
-    packages.${system} = {
-      init = pkgs.writeShellApplication {
-        name = "aoc-init";
+    packages.${system} =
+      mkDays 25 // {
+        init = pkgs.writeShellApplication {
+          name = "aoc-init";
 
-        runtimeInputs = [
-          aocInput
-          pkgs.coreutils
-        ];
+          runtimeInputs = [
+            aocInput
+            pkgs.coreutils
+          ];
 
-        text = ''
-          if [ -d "day$1" ]; then
-            echo "Day $1 already exists" >&2
-            exit 1
-          fi
+          text = ''
+            if [ -d "day$1" ]; then
+              echo "Day $1 already exists" >&2
+              exit 1
+            fi
 
-          INPUT_FILE="$(aoc-input "$1")"
+            INPUT_FILE="$(aoc-input "$1")"
 
-          cp -r template "day$1"
+            cp -r template "day$1"
 
-          touch "day$1/example.txt"
-          cat "$INPUT_FILE" > "day$1/input.txt"
-        '';
+            touch "day$1/example.txt"
+            cat "$INPUT_FILE" > "day$1/input.txt"
+          '';
+        };
       };
-
-      day1 = mkDay 1;
-      day2 = mkDay 2;
-      day3 = mkDay 3;
-      day4 = mkDay 4;
-      day5 = mkDay 5;
-      day6 = mkDay 6;
-      day7 = mkDay 7;
-      day8 = mkDay 8;
-      day9 = mkDay 9;
-      day10 = mkDay 10;
-      day11 = mkDay 11;
-    };
   };
 }
